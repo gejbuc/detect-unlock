@@ -1,0 +1,56 @@
+{
+  "cascade": {
+    "model": "haarcascade_frontalface_default.xml",
+    "alternate_models": [
+      "haarcascade_frontalface_alt.xml",
+      "haarcascade_frontalface_alt2.xml",
+      "haarcascade_profileface.xml"
+    ]
+  },
+  "detection": {
+    "scaleFactor": 1.1,
+    "minNeighbors": 5,
+    "minSize": {
+      "width": 30,
+      "height": 30
+    },
+    "maxSize": {
+      "width": 0,
+      "height": 0
+    },
+    "flags": [
+      "CASCADE_SCALE_IMAGE"
+    ]
+  },
+  "drawing": {
+    "rectangle": {
+      "color": {
+        "blue": 0,
+        "green": 255,
+        "red": 0
+      },
+      "thickness": 2
+    },
+    "text": {
+      "font": "FONT_HERSHEY_SIMPLEX",
+      "scale": 1.0,
+      "color": {
+        "blue": 0,
+        "green": 255,
+        "red": 0
+      },
+      "thickness": 2
+    }
+  },
+  "video": {
+    "capture_device": 0,
+    "frame_width": 640,
+    "frame_height": 480,
+    "fps": 30
+  },
+  "output": {
+    "save_results": false,
+    "output_directory": "output",
+    "show_window": true
+  }
+}
