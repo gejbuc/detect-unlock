@@ -22,6 +22,14 @@
       "CASCADE_SCALE_IMAGE"
     ]
   },
+  "camera": {
+    "index": 0,
+    "available_cameras": [
+      {"index": 0, "description": "Default camera"},
+      {"index": 1, "description": "External USB camera"},
+      {"index": 2, "description": "Third camera"}
+    ]
+  },
   "drawing": {
     "rectangle": {
       "color": {
