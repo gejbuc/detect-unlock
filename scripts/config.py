@@ -55,6 +55,7 @@ TEXT_SCALE = 1.0
 # ============================================================================
 
 CAPTURE_DEVICE = 0         # Webcam device index
+CAMERA_INDEX = 0           # Selected camera index
 FRAME_WIDTH = 640
 FRAME_HEIGHT = 480
 
@@ -92,7 +93,7 @@ def update_from_dict(config_dict: Dict[str, Any]) -> None:
     """Update global config from dictionary."""
     global SCALE_FACTOR, MIN_NEIGHBORS, MIN_SIZE, MAX_SIZE
     global RECTANGLE_COLOR, RECTANGLE_THICKNESS
-    global CAPTURE_DEVICE, FRAME_WIDTH, FRAME_HEIGHT, SAVE_RESULTS
+    global CAMERA_INDEX, CAPTURE_DEVICE, FRAME_WIDTH, FRAME_HEIGHT, SAVE_RESULTS
     
     if "detection" in config_dict:
         d = config_dict["detection"]
@@ -100,6 +101,10 @@ def update_from_dict(config_dict: Dict[str, Any]) -> None:
         MIN_NEIGHBORS = d.get("minNeighbors", MIN_NEIGHBORS)
         ms = d.get("minSize", {})
         MIN_SIZE = (ms.get("width", MIN_SIZE[0]), ms.get("height", MIN_SIZE[1]))
+    
+    if "camera" in config_dict:
+        c = config_dict["camera"]
+        CAMERA_INDEX = c.get("index", CAMERA_INDEX)
     
     if "drawing" in config_dict:
         g = config_dict["drawing"].get("rectangle", {})
