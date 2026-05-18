@@ -70,9 +70,9 @@ def detect_in_image(image_path, face_cascade):
     return len(faces)
 
 
-def detect_from_webcam(face_cascade):
+def detect_from_webcam(face_cascade, camera_index: int = 0):
     """Detect faces in real-time from webcam."""
-    cap = cv2.VideoCapture(config.CAPTURE_DEVICE)
+    cap = cv2.VideoCapture(camera_index)
     
     if not cap.isOpened():
         raise RuntimeError("Could not open webcam")
@@ -116,6 +116,7 @@ def main():
     parser.add_argument('--scale', type=float, default=None, help='Override scaleFactor')
     parser.add_argument('--neighbors', type=int, default=None, help='Override minNeighbors')
     parser.add_argument('--min-size', type=int, default=None, help='Override min face size')
+    parser.add_argument('--camera', type=int, default=None, help='Camera index (0, 1, 2, ...)')
     
     args = parser.parse_args()
     
@@ -134,13 +135,17 @@ def main():
         if args.min_size:
             config.MIN_SIZE = (args.min_size, args.min_size)
         
+        # Handle camera index - CLI takes priority over config
+        camera_idx = args.camera if args.camera is not None else config.CAMERA_INDEX
+        print(f"Using camera index: {camera_idx}")
+        
         print("Loading face detector...")
         face_cascade = load_face_detector()
         
         if args.image:
             detect_in_image(args.image, face_cascade)
         else:
-            detect_from_webcam(face_cascade)
+            detect_from_webcam(face_cascade, camera_idx)
     
     except Exception as e:
         print(f"Error: {e}")
