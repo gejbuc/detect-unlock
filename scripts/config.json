@@ -23,11 +23,20 @@
     ]
   },
   "camera": {
-    "index": 0,
+    "index": 1,
     "available_cameras": [
-      {"index": 0, "description": "Default camera"},
-      {"index": 1, "description": "External USB camera"},
-      {"index": 2, "description": "Third camera"}
+      {
+        "index": 0,
+        "description": "Default camera"
+      },
+      {
+        "index": 1,
+        "description": "External USB camera"
+      },
+      {
+        "index": 2,
+        "description": "Third camera"
+      }
     ]
   },
   "drawing": {
@@ -51,7 +60,7 @@
     }
   },
   "video": {
-    "capture_device": 0,
+    "capture_device": 1,
     "frame_width": 640,
     "frame_height": 480,
     "fps": 30
