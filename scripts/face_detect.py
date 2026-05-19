@@ -10,6 +10,9 @@ Usage:
     python face_detect.py --image photo.jpg --preset fast
 """
 
+import os
+# Disable MSMF Hardware Transforms BEFORE importing cv2 to prevent GPU crashes
+os.environ["OPENCV_VIDEOIO_MSMF_ENABLE_HW_TRANSFORMS"] = "0"
 import cv2
 import argparse
 import sys
@@ -71,8 +74,8 @@ def detect_in_image(image_path, face_cascade):
 
 
 def detect_from_webcam(face_cascade, camera_index: int = 0):
-    """Detect faces in real-time from webcam."""
-    cap = cv2.VideoCapture(camera_index)
+    # Use MSMF backend explicitly since HW transforms are now safely disabled
+    cap = cv2.VideoCapture(camera_index, cv2.CAP_MSMF)
     
     if not cap.isOpened():
         raise RuntimeError("Could not open webcam")
